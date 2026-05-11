@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Northmark M&A — Middle Market Advisory & Research</title>
+<meta name="description" content="A curated directory of M&A advisors and investment banks focused on middle market and lower middle market transactions across North America.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Root ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ff-d: 'Cormorant Garamond', serif;
+  --ff-b: 'DM Sans', sans-serif;
+  --gold: #9a7b3f;
+  --gold-l: #f5ede0;
+  --gold-m: #c9a96e;
+  --ink: #1a1a1a;
+  --ink2: #5a5a5a;
+  --ink3: #9a9a9a;
+  --rule: #e4e0da;
+  --bg: #ffffff;
+  --bg2: #faf9f7;
+  --cat-ma-bg: #faeeda; --cat-ma-fg: #633806;
+  --cat-ib-bg: #e6f1fb; --cat-ib-fg: #0C447C;
+  --green-bg: #eaf3de;  --green-fg: #27500A;
+  --amber-bg: #faeeda;  --amber-fg: #854F0B;
+  --blue-bg:  #dbeafe;  --blue-fg:  #185FA5;
+  --acq-bg: #eaf3de; --acq-fg: #27500A;
+  --inv-bg: #e6f1fb; --inv-fg: #0C447C;
+  --ast-bg: #EEEDFE; --ast-fg: #3C3489;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--ff-b); font-weight: 300; color: var(--ink); background: var(--bg); font-size: 14px; line-height: 1.6; }
+
+/* ── Utilities ── */
+.eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; display: block; }
+.page-title { font-family: var(--ff-d); font-size: clamp(28px, 4vw, 40px); font-weight: 400; color: var(--ink); line-height: 1.15; margin-bottom: 10px; }
+.page-sub { font-size: 13px; color: var(--ink2); line-height: 1.75; max-width: 620px; }
+.rule { height: 0.5px; background: var(--rule); border: none; }
+.cat-badge { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.07em; padding: 3px 9px; border-radius: 2px; white-space: nowrap; }
+.cat-ma { background: var(--cat-ma-bg); color: var(--cat-ma-fg); }
+.cat-ib { background: var(--cat-ib-bg); color: var(--cat-ib-fg); }
+.spec-tag { display: inline-block; font-size: 10px; padding: 3px 7px; border: 0.5px solid var(--rule); border-radius: 2px; color: var(--ink2); margin-right: 3px; margin-bottom: 3px; }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; margin-right: 5px; flex-shrink: 0; }
+.dot-active  { background: #639922; }
+.dot-limited { background: #BA7517; }
+.dot-new     { background: #185FA5; }
+.btn-gold { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 9px 20px; border: 1px solid var(--gold); color: var(--gold); background: transparent; border-radius: 2px; cursor: pointer; transition: background 0.15s; white-space: nowrap; }
+.btn-gold:hover { background: var(--gold-l); }
+.btn-gold-fill { background: var(--gold); color: #fff; border-color: var(--gold); }
+.btn-gold-fill:hover { background: #7e6330; border-color: #7e6330; }
+
+/* ── Nav ── */
+.nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 62px; background: var(--bg); border-bottom: 0.5px solid var(--rule); }
+.nav-logo { font-family: var(--ff-d); font-size: 20px; font-weight: 500; letter-spacing: 0.04em; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 2px; }
+.nav-logo em { font-style: italic; color: var(--gold-m); }
+.nav-links { display: flex; gap: 0; list-style: none; }
+.nav-links li a { display: flex; align-items: center; height: 62px; padding: 0 15px; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); text-decoration: none; border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s; cursor: pointer; }
+.nav-links li a:hover { color: var(--gold); }
+.nav-links li a.active { color: var(--gold); border-bottom-color: var(--gold); }
+.nav-subscribe { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 7px 16px; border: 1px solid var(--gold); color: var(--gold); background: transparent; border-radius: 2px; cursor: pointer; transition: background 0.15s; }
+.nav-subscribe:hover { background: var(--gold-l); }
+.nav-mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.nav-mobile-toggle span { display: block; width: 22px; height: 1.5px; background: var(--ink2); transition: all 0.2s; }
+
+/* ── Pages ── */
+.page { display: none; animation: fadeIn 0.2s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── Page Hero ── */
+.page-hero { padding: 48px 40px 32px; border-bottom: 0.5px solid var(--rule); }
+
+/* ── Filter Bar ── */
+.filter-bar { display: flex; align-items: stretch; border-bottom: 0.5px solid var(--rule); background: var(--bg2); overflow-x: auto; }
+.filter-tab { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0 18px; height: 40px; display: flex; align-items: center; color: var(--ink3); cursor: pointer; border-bottom: 2px solid transparent; border-right: 0.5px solid var(--rule); transition: color 0.15s, border-color 0.15s; background: transparent; white-space: nowrap; flex-shrink: 0; }
+.filter-tab:hover { color: var(--ink2); }
+.filter-tab.active { color: var(--gold); border-bottom-color: var(--gold); background: var(--bg); }
+.filter-search { margin-left: auto; display: flex; align-items: center; padding: 0 14px; border-left: 0.5px solid var(--rule); flex-shrink: 0; }
+.filter-search input { font-size: 11px; border: none; background: transparent; color: var(--ink); outline: none; width: 180px; font-family: var(--ff-b); }
+.filter-search input::placeholder { color: var(--ink3); }
+
+/* ── Directory Table ── */
+.dir-table { width: 100%; border-collapse: collapse; }
+.dir-table thead tr { background: var(--bg2); border-bottom: 0.5px solid var(--rule); }
+.dir-table th { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); padding: 10px 0; text-align: left; }
+.dir-table th:first-child { padding-left: 40px; }
+.dir-table th:last-child { padding-right: 40px; text-align: right; }
+.dir-table tbody tr { border-bottom: 0.5px solid var(--rule); transition: background 0.12s; cursor: pointer; }
+.dir-table tbody tr:hover { background: var(--bg2); }
+.dir-table td { padding: 13px 0; vertical-align: middle; }
+.dir-table td:first-child { padding-left: 40px; }
+.dir-table td:last-child { padding-right: 40px; text-align: right; }
+.adv-cell { display: flex; align-items: center; gap: 12px; }
+.adv-av { width: 36px; height: 36px; border-radius: 50%; background: var(--gold-l); border: 1px solid var(--gold-m); display: flex; align-items: center; justify-content: center; font-family: var(--ff-d); font-size: 13px; font-weight: 500; color: var(--gold); flex-shrink: 0; }
+.adv-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+.adv-firm { font-size: 11px; color: var(--ink3); margin-top: 2px; }
+.status-cell { display: flex; align-items: center; justify-content: flex-end; font-size: 12px; font-weight: 500; }
+.list-note { padding: 12px 40px; font-size: 11px; color: var(--ink3); background: var(--bg2); border-top: 0.5px solid var(--rule); font-style: italic; }
+
+/* ── Transactions ── */
+.tx-table { width: 100%; border-collapse: collapse; }
+.tx-table thead tr { background: var(--bg2); border-bottom: 0.5px solid var(--rule); }
+.tx-table th { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); padding: 10px 0; text-align: left; }
+.tx-table th:first-child { padding-left: 40px; }
+.tx-table th:last-child { padding-right: 40px; text-align: right; }
+.tx-table tbody tr { border-bottom: 0.5px solid var(--rule); transition: background 0.12s; }
+.tx-table tbody tr:hover { background: var(--bg2); }
+.tx-table td { padding: 13px 0; vertical-align: middle; }
+.tx-table td:first-child { padding-left: 40px; }
+.tx-table td:last-child { padding-right: 40px; text-align: right; }
+.tx-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+.tx-sub  { font-size: 11px; color: var(--ink3); margin-top: 2px; }
+.tx-type { font-size: 10px; font-weight: 500; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 2px; display: inline-block; }
+.tx-acq  { background: var(--acq-bg); color: var(--acq-fg); }
+.tx-inv  { background: var(--inv-bg); color: var(--inv-fg); }
+.tx-ast  { background: var(--ast-bg); color: var(--ast-fg); }
+.tx-val  { font-family: var(--ff-d); font-size: 17px; color: var(--ink); }
+.tx-year { font-size: 11px; color: var(--ink3); }
+.summary-bar { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 0.5px solid var(--rule); background: var(--bg2); }
+.summary-item { padding: 18px 20px; border-right: 0.5px solid var(--rule); }
+.summary-item:last-child { border-right: none; }
+.summary-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3); margin-bottom: 4px; }
+.summary-val { font-family: var(--ff-d); font-size: 20px; color: var(--ink); }
+.summary-sub { font-size: 11px; color: var(--ink3); margin-top: 2px; }
+
+/* ── Firm Grid ── */
+.firm-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.firm-card { border-right: 0.5px solid var(--rule); border-bottom: 0.5px solid var(--rule); padding: 24px 22px; cursor: pointer; transition: background 0.12s; position: relative; }
+.firm-card:hover { background: var(--bg2); }
+.firm-card:nth-child(3n) { border-right: none; }
+.firm-card-arrow { position: absolute; top: 20px; right: 18px; font-size: 16px; color: var(--ink3); transition: color 0.15s; }
+.firm-card:hover .firm-card-arrow { color: var(--gold); }
+.firm-card-name { font-family: var(--ff-d); font-size: 18px; font-weight: 400; color: var(--ink); margin: 10px 0 4px; line-height: 1.2; }
+.firm-card-mp { font-size: 12px; color: var(--ink2); margin-bottom: 2px; }
+.firm-card-web { font-size: 11px; color: var(--gold); display: block; margin-bottom: 8px; }
+.firm-card-region { font-size: 11px; color: var(--ink3); margin-bottom: 10px; }
+.firm-card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.firm-tag { font-size: 10px; padding: 3px 7px; border: 0.5px solid var(--rule); border-radius: 2px; color: var(--ink2); }
+
+/* ── Firm Detail ── */
+.firm-detail { display: none; }
+.firm-detail.open { display: block; }
+.firm-detail-back { padding: 14px 40px; border-bottom: 0.5px solid var(--rule); background: var(--bg2); display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: var(--ink2); transition: color 0.15s; }
+.firm-detail-back:hover { color: var(--gold); }
+.firm-detail-body { display: grid; grid-template-columns: 280px 1fr; gap: 0; }
+.firm-detail-sidebar { padding: 32px 28px; border-right: 0.5px solid var(--rule); }
+.firm-detail-main { padding: 32px 36px; }
+.firm-avatar { width: 60px; height: 60px; border-radius: 50%; background: var(--gold-l); border: 1px solid var(--gold-m); display: flex; align-items: center; justify-content: center; font-family: var(--ff-d); font-size: 22px; color: var(--gold); margin-bottom: 14px; }
+.firm-detail-name { font-family: var(--ff-d); font-size: 20px; font-weight: 400; color: var(--ink); margin-bottom: 8px; }
+.firm-meta-block { background: var(--bg2); border: 0.5px solid var(--rule); border-radius: 3px; padding: 14px; margin: 14px 0; }
+.firm-meta-row { display: flex; justify-content: space-between; font-size: 12px; padding: 4px 0; }
+.firm-meta-label { color: var(--ink3); }
+.firm-meta-val { color: var(--ink); font-weight: 500; text-align: right; }
+.firm-team-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); margin-bottom: 10px; margin-top: 16px; display: block; }
+.firm-team-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid var(--rule); }
+.firm-team-av { width: 32px; height: 32px; border-radius: 50%; background: var(--gold-l); border: 1px solid var(--gold-m); display: flex; align-items: center; justify-content: center; font-family: var(--ff-d); font-size: 11px; color: var(--gold); flex-shrink: 0; }
+.firm-team-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+.firm-team-title { font-size: 11px; color: var(--ink3); margin-top: 1px; }
+.firm-about-title { font-family: var(--ff-d); font-size: 20px; font-weight: 400; color: var(--ink); margin-bottom: 10px; }
+.firm-about-body { font-size: 13px; color: var(--ink2); line-height: 1.8; margin-bottom: 24px; }
+.firm-deals-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); margin-bottom: 12px; }
+.firm-deal-row { border: 0.5px solid var(--rule); border-radius: 3px; padding: 13px 16px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+.firm-deal-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+.firm-deal-sub  { font-size: 11px; color: var(--ink3); margin-top: 2px; }
+.firm-deal-val  { font-family: var(--ff-d); font-size: 17px; color: var(--gold); }
+.no-deals { font-size: 13px; color: var(--ink3); padding: 12px 0; border-top: 0.5px solid var(--rule); }
+
+/* ── Reports ── */
+.reports-layout { display: grid; grid-template-columns: 1fr 260px; }
+.reports-main { border-right: 0.5px solid var(--rule); padding: 32px 36px; }
+.reports-sidebar { padding: 24px 20px; }
+.report-cover { background: var(--bg2); border: 0.5px solid var(--rule); border-radius: 3px; padding: 28px; }
+.report-cover-eyebrow { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.report-cover-title { font-family: var(--ff-d); font-size: 24px; font-weight: 400; color: var(--ink); line-height: 1.2; margin-bottom: 8px; }
+.report-cover-sub { font-size: 12px; color: var(--ink2); line-height: 1.7; margin-bottom: 14px; }
+.report-cadence { font-size: 11px; color: var(--ink3); background: var(--bg); border: 0.5px solid var(--rule); border-radius: 2px; padding: 8px 12px; margin-bottom: 16px; line-height: 1.6; }
+.report-cadence strong { color: var(--ink); font-weight: 500; }
+.report-meta { display: flex; gap: 24px; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 0.5px solid var(--rule); flex-wrap: wrap; }
+.report-meta-item { display: flex; flex-direction: column; gap: 3px; }
+.report-meta-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3); }
+.report-meta-val { font-size: 13px; font-weight: 500; color: var(--ink); }
+.toc-title { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3); margin-bottom: 10px; }
+.toc-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 0.5px solid var(--rule); font-size: 12px; gap: 8px; }
+.toc-num   { color: var(--ink3); font-size: 11px; flex-shrink: 0; width: 20px; }
+.toc-label { color: var(--ink); flex: 1; }
+.toc-pg    { color: var(--ink3); font-size: 11px; flex-shrink: 0; }
+.report-dl { width: 100%; margin-top: 18px; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px; background: var(--gold); color: #fff; border: none; border-radius: 2px; cursor: pointer; transition: background 0.15s; }
+.report-dl:hover { background: #7e6330; }
+.sidebar-title { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 14px; }
+.archive-item { border-bottom: 0.5px solid var(--rule); padding: 12px 0; cursor: pointer; }
+.archive-item:hover .archive-item-title { color: var(--gold); }
+.archive-item-tag   { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+.archive-item-title { font-size: 12px; font-weight: 500; color: var(--ink); line-height: 1.4; margin-bottom: 3px; transition: color 0.15s; }
+.archive-item-date  { font-size: 11px; color: var(--ink3); }
+
+/* ── About ── */
+.about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: 48px 40px; border-bottom: 0.5px solid var(--rule); align-items: start; }
+.about-headline { font-family: var(--ff-d); font-size: clamp(24px, 3vw, 34px); font-weight: 400; line-height: 1.2; color: var(--ink); margin-bottom: 18px; }
+.about-headline em { font-style: italic; color: var(--gold); }
+.about-body { font-size: 13px; color: var(--ink2); line-height: 1.9; margin-bottom: 14px; }
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.about-stat { background: var(--bg); padding: 22px 18px; }
+.about-stat-num { font-family: var(--ff-d); font-size: 34px; font-weight: 400; color: var(--gold); line-height: 1; }
+.about-stat-label { font-size: 11px; color: var(--ink3); margin-top: 6px; line-height: 1.4; }
+.about-section { padding: 36px 40px; border-bottom: 0.5px solid var(--rule); }
+.about-section-title { font-family: var(--ff-d); font-size: 24px; font-weight: 400; color: var(--ink); margin-bottom: 24px; }
+.principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.principle-icon { font-size: 22px; color: var(--gold); margin-bottom: 10px; }
+.principle-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+.principle-body { font-size: 12px; color: var(--ink2); line-height: 1.75; }
+.leadership-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 0.5px solid var(--rule); border-radius: 4px; overflow: hidden; margin-bottom: 20px; }
+.leader-card { border-right: 0.5px solid var(--rule); padding: 18px; display: flex; align-items: flex-start; gap: 13px; }
+.leader-card:last-child { border-right: none; }
+.leader-av { width: 44px; height: 44px; border-radius: 50%; background: var(--gold-l); border: 1px solid var(--gold-m); display: flex; align-items: center; justify-content: center; font-family: var(--ff-d); font-size: 15px; color: var(--gold); flex-shrink: 0; }
+.leader-av.empty { background: var(--bg2); border-color: var(--rule); color: var(--ink3); }
+.leader-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+.leader-name.tba { color: var(--ink3); }
+.leader-role { font-size: 11px; color: var(--ink3); margin-top: 3px; line-height: 1.4; }
+.placeholder-block { border: 1px dashed var(--rule); border-radius: 4px; padding: 20px 24px; }
+.placeholder-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 12px; }
+.placeholder-slots { display: flex; gap: 10px; flex-wrap: wrap; }
+.placeholder-slot { display: flex; align-items: center; gap: 8px; padding: 9px 14px; border: 0.5px dashed var(--rule); border-radius: 3px; font-size: 12px; color: var(--ink3); }
+.placeholder-plus { width: 26px; height: 26px; border-radius: 50%; background: var(--bg2); border: 1px dashed var(--rule); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--rule); }
+
+/* ── Footer ── */
+footer { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid var(--rule); background: var(--bg2); }
+.footer-left { font-size: 11px; color: var(--ink3); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink3); text-decoration: none; transition: color 0.15s; }
+.footer-links a:hover { color: var(--gold); }
+
+/* ── Subscribe Modal ── */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; align-items: center; justify-content: center; }
+.modal-overlay.open { display: flex; }
+.modal { background: var(--bg); border-radius: 4px; padding: 36px; width: 100%; max-width: 420px; border: 0.5px solid var(--rule); }
+.modal-title { font-family: var(--ff-d); font-size: 24px; font-weight: 400; color: var(--ink); margin-bottom: 6px; }
+.modal-sub { font-size: 13px; color: var(--ink2); margin-bottom: 20px; }
+.modal-field { margin-bottom: 12px; }
+.modal-field label { display: block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3); margin-bottom: 5px; }
+.modal-field input { width: 100%; padding: 9px 12px; border: 0.5px solid var(--rule); border-radius: 2px; font-family: var(--ff-b); font-size: 13px; color: var(--ink); background: var(--bg); outline: none; transition: border-color 0.15s; }
+.modal-field input:focus { border-color: var(--gold); }
+.modal-actions { display: flex; gap: 10px; margin-top: 18px; }
+.modal-cancel { font-size: 12px; color: var(--ink3); background: none; border: none; cursor: pointer; padding: 0; }
+.modal-cancel:hover { color: var(--ink); }
+.modal-close { position: absolute; top: 16px; right: 16px; font-size: 20px; color: var(--ink3); background: none; border: none; cursor: pointer; line-height: 1; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 62px; left: 0; right: 0; background: var(--bg); border-bottom: 0.5px solid var(--rule); z-index: 99; padding: 12px 0; }
+  .nav-links li a { height: auto; padding: 12px 20px; border-bottom: none; border-left: 2px solid transparent; }
+  .nav-links li a.active { border-left-color: var(--gold); border-bottom: none; }
+  .nav-mobile-toggle { display: flex; }
+  .nav-subscribe { display: none; }
+  .page-hero { padding: 32px 20px 24px; }
+  .about-hero { grid-template-columns: 1fr; gap: 28px; padding: 32px 20px; }
+  .firm-grid { grid-template-columns: 1fr 1fr; }
+  .firm-card:nth-child(3n) { border-right: 0.5px solid var(--rule); }
+  .firm-card:nth-child(2n) { border-right: none; }
+  .summary-bar { grid-template-columns: repeat(3, 1fr); }
+  .about-section { padding: 28px 20px; }
+  .principles { grid-template-columns: 1fr; gap: 20px; }
+  .leadership-grid { grid-template-columns: 1fr; }
+  .leader-card { border-right: none; border-bottom: 0.5px solid var(--rule); }
+  .leader-card:last-child { border-bottom: none; }
+  .reports-layout { grid-template-columns: 1fr; }
+  .reports-sidebar { border-top: 0.5px solid var(--rule); padding: 20px; }
+  .firm-detail-body { grid-template-columns: 1fr; }
+  .firm-detail-sidebar { border-right: none; border-bottom: 0.5px solid var(--rule); }
+  .dir-table th:nth-child(3), .dir-table td:nth-child(3),
+  .dir-table th:nth-child(4), .dir-table td:nth-child(4) { display: none; }
+  .tx-table th:nth-child(3), .tx-table td:nth-child(3),
+  .tx-table th:nth-child(4), .tx-table td:nth-child(4) { display: none; }
+}
+@media (max-width: 600px) {
+  .firm-grid { grid-template-columns: 1fr; }
+  .firm-card:nth-child(2n) { border-right: none; }
+  .firm-card { border-right: none; }
+  .summary-bar { grid-template-columns: 1fr 1fr; }
+  .about-stats { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="main-nav">
+  <a class="nav-logo" href="#" onclick="showPage('list'); return false;">Northmark <em>&thinsp;M&A</em></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a onclick="showPage('list')"         id="nav-list"        class="active">List</a></li>
+    <li><a onclick="showPage('transactions')" id="nav-transactions">Transactions</a></li>
+    <li><a onclick="showPage('advisors')"     id="nav-advisors">Advisors</a></li>
+    <li><a onclick="showPage('reports')"      id="nav-reports">Reports</a></li>
+    <li><a onclick="showPage('about')"        id="nav-about">About Us</a></li>
+  </ul>
+  <button class="nav-subscribe" onclick="openModal()">Subscribe</button>
+  <div class="nav-mobile-toggle" onclick="toggleMobileNav()" id="mobile-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- PAGE: LIST -->
+<div class="page active" id="page-list">
+  <div class="page-hero">
+    <span class="eyebrow">The List · Year One</span>
+    <h1 class="page-title">Middle market directory</h1>
+    <p class="page-sub">A curated directory of M&amp;A advisors and investment banks focused on middle market and lower middle market transactions across North America — covering quality of earnings specialists and deal originators across all industries.</p>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-tab active" onclick="filterList('all', this)">All</button>
+    <button class="filter-tab" onclick="filterList('ma', this)">M&amp;A Advisors — QofE</button>
+    <button class="filter-tab" onclick="filterList('ib', this)">Investment Banks</button>
+    <div class="filter-search">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--ink3);margin-right:8px;flex-shrink:0"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search…" id="list-search" oninput="applyListFilter()">
+    </div>
+  </div>
+  <table class="dir-table">
+    <thead>
+      <tr>
+        <th>Advisor / Firm</th>
+        <th>Category</th>
+        <th>Specialization</th>
+        <th>Region</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="list-body">
+      <tr data-cat="ma" onclick="showPage('advisors'); setTimeout(()=>openFirm('khanna'),100)">
+        <td><div class="adv-cell"><div class="adv-av">RK</div><div><div class="adv-name">Rajiv Khanna</div><div class="adv-firm">Khanna Advisory Group</div></div></div></td>
+        <td><span class="cat-badge cat-ma">M&amp;A Advisor</span></td>
+        <td><span class="spec-tag">QofE</span><span class="spec-tag">Broadcasting</span></td>
+        <td style="font-size:12px;color:var(--ink2)">Toronto, ON</td>
+        <td><div class="status-cell"><span class="status-dot dot-active"></span><span style="color:#3B6D11;font-size:12px">Active</span></div></td>
+      </tr>
+      <tr data-cat="ma" onclick="showPage('advisors'); setTimeout(()=>openFirm('dubois'),100)">
+        <td><div class="adv-cell"><div class="adv-av">PD</div><div><div class="adv-name">Patricia Dubois</div><div class="adv-firm">Dubois Media Law &amp; Advisory</div></div></div></td>
+        <td><span class="cat-badge cat-ma">M&amp;A Advisor</span></td>
+        <td><span class="spec-tag">QofE</span><span class="spec-tag">Regulatory</span></td>
+        <td style="font-size:12px;color:var(--ink2)">Ottawa, ON</td>
+        <td><div class="status-cell"><span class="status-dot dot-active"></span><span style="color:#3B6D11;font-size:12px">Active</span></div></td>
+      </tr>
+      <tr data-cat="ma" onclick="showPage('advisors'); setTimeout(()=>openFirm('northlight'),100)">
+        <td><div class="adv-cell"><div class="adv-av">BN</div><div><div class="adv-name">Ben Nakamura</div><div class="adv-firm">Northlight Strategies</div></div></div></td>
+        <td><span class="cat-badge cat-ma">M&amp;A Advisor</span></td>
+        <td><span class="spec-tag">Valuation</span><span class="spec-tag">QofE</span></td>
+        <td style="font-size:12px;color:var(--ink2)">Calgary, AB</td>
+        <td><div class="status-cell"><span class="status-dot dot-limited"></span><span style="color:#854F0B;font-size:12px">Limited</span></div></td>
+      </tr>
+      <tr data-cat="ma" onclick="showPage('advisors'); setTimeout(()=>openFirm('meridian'),100)">
+        <td><div class="adv-cell"><div class="adv-av">AO</div><div><div class="adv-name">Amara Osei</div><div class="adv-firm">Meridian Capital Advisors</div></div></div></td>
+        <td><span class="cat-badge cat-ma">M&amp;A Advisor</span></td>
+        <td><span class="spec-tag">QofE</span><span class="spec-tag">Private Capital</span></td>
+        <td style="font-size:12px;color:var(--ink2)">Toronto, ON</td>
+        <td><div class="status-cell"><span class="status-dot dot-active"></span><span style="color:#3B6D11;font-size:12px">Active</span></div></td>
+      </tr>
+      <tr data-cat="ib" onclick="showPage('advisors'); setTimeout(()=>openFirm('laurentian'),100)">
+        <td><div class="adv-cell"><div class="adv-av">SL</div><div><div class="adv-name">Sophie Laurent</div><div class="adv-firm">Laurentian Media Capital</div></div></div></td>
+        <td><span class="cat-badge cat-ib">Investment Bank</span></td>
+        <td><span class="spec-tag">Mid-Market</span><span class="spec-tag">Digital</span></td>
+        <td style="font-size:12px;color:var(--ink2)">Montreal, QC</td>
+        <td><div class="status-cell"><span class="status-dot dot-active"></span><span style="color:#3B6D11;font-size:12px">Active</span></div></td>
+      </tr>
+      <tr data-cat="ib" onclick="showPage('advisors'); setTimeout(()=>openFirm('pacific'),100)">
+        <td><div class="adv-cell"><div class="adv-av">MC</div><div><div class="adv-name">Marcus Chen</div><div class="adv-firm">Pacific Crest Media Partners</div></div></div></td>
+        <td><span class="cat-badge cat-ib">Investment Bank</span></td>
+        <td><span class="spec-tag">Mid-Market</span><span class="spec-tag">AdTech</span></td>
+        <td style="font-size:12px;color:var(--ink2)">Vancouver, BC</td>
+        <td><div class="status-cell"><span class="status-dot dot-active"></span><span style="color:#3B6D11;font-size:12px">Active</span></div></td>
+      </tr>
+      <tr data-cat="ib">
+        <td><div class="adv-cell"><div class="adv-av">JR</div><div><div class="adv-name">James Reeves</div><div class="adv-firm">Reeves &amp; Holloway Capital</div></div></div></td>
+        <td><span class="cat-badge cat-ib">Investment Bank</span></td>
+        <td><span class="spec-tag">Mid-Market</span><span class="spec-tag">Community</span></td>
+        <td style="font-size:12px;color:var(--ink2)">Toronto, ON</td>
+        <td><div class="status-cell"><span class="status-dot dot-limited"></span><span style="color:#854F0B;font-size:12px">Limited</span></div></td>
+      </tr>
+      <tr data-cat="ib">
+        <td><div class="adv-cell"><div class="adv-av">TM</div><div><div class="adv-name">Theresa Mak</div><div class="adv-firm">Mak Capital Markets</div></div></div></td>
+        <td><span class="cat-badge cat-ib">Investment Bank</span></td>
+        <td><span class="spec-tag">Mid-Market</span><span class="spec-tag">Audio</span></td>
+        <td style="font-size:12px;color:var(--ink2)">Toronto, ON</td>
+        <td><div class="status-cell"><span class="status-dot dot-new"></span><span style="color:#185FA5;font-size:12px">New</span></div></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="list-note">Year one focus &nbsp;·&nbsp; Middle market &amp; lower middle market &nbsp;·&nbsp; $5M–$150M &nbsp;·&nbsp; All industries &nbsp;·&nbsp; Canada &amp; United States</div>
+</div>
+
+<!-- PAGE: TRANSACTIONS -->
+<div class="page" id="page-transactions">
+  <div class="page-hero">
+    <span class="eyebrow">Closed Transactions</span>
+    <h1 class="page-title">Deal record</h1>
+    <p class="page-sub">A record of closed transactions sourced through Northmark M&amp;A's listed advisors and investment banks. Disclosed with principal consent. All deal values are as announced.</p>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-tab active" onclick="filterTX('all',this)">All transactions</button>
+    <button class="filter-tab" onclick="filterTX('acq',this)">Acquisitions</button>
+    <button class="filter-tab" onclick="filterTX('inv',this)">Investments</button>
+    <button class="filter-tab" onclick="filterTX('ast',this)">Asset Sales</button>
+  </div>
+  <table class="tx-table">
+    <thead>
+      <tr>
+        <th style="padding-left:40px">Transaction</th>
+        <th>Type</th>
+        <th>Advisor / Bank</th>
+        <th>Sector</th>
+        <th style="padding-right:40px;text-align:right">Value &nbsp;·&nbsp; Year</th>
+      </tr>
+    </thead>
+    <tbody id="tx-body">
+      <tr data-type="acq"><td style="padding-left:40px"><div class="tx-name">Prairie Digital Holdings</div><div class="tx-sub">Saskatchewan &amp; Manitoba</div></td><td><span class="tx-type tx-acq">Acquisition</span></td><td style="font-size:12px;color:var(--ink2)">Khanna Advisory Group</td><td style="font-size:12px;color:var(--ink2)">Regional Digital</td><td style="padding-right:40px;text-align:right"><div class="tx-val">$12.5M</div><div class="tx-year">2024</div></td></tr>
+      <tr data-type="ast"><td style="padding-left:40px"><div class="tx-name">Atlantic Press Group</div><div class="tx-sub">Halifax, NS</div></td><td><span class="tx-type tx-ast">Asset Sale</span></td><td style="font-size:12px;color:var(--ink2)">Reeves &amp; Holloway Capital</td><td style="font-size:12px;color:var(--ink2)">Print &amp; Legacy</td><td style="padding-right:40px;text-align:right"><div class="tx-val">$2.1M</div><div class="tx-year">2024</div></td></tr>
+      <tr data-type="inv"><td style="padding-left:40px"><div class="tx-name">Urban Lifestyle Media</div><div class="tx-sub">Toronto, ON</div></td><td><span class="tx-type tx-inv">Investment</span></td><td style="font-size:12px;color:var(--ink2)">Laurentian Media Capital</td><td style="font-size:12px;color:var(--ink2)">Digital — Gen Z</td><td style="padding-right:40px;text-align:right"><div class="tx-val">$3.0M</div><div class="tx-year">2024</div></td></tr>
+      <tr data-type="acq"><td style="padding-left:40px"><div class="tx-name">Cascade Community Radio</div><div class="tx-sub">British Columbia</div></td><td><span class="tx-type tx-acq">Acquisition</span></td><td style="font-size:12px;color:var(--ink2)">Pacific Crest Media Partners</td><td style="font-size:12px;color:var(--ink2)">Community Broadcast</td><td style="padding-right:40px;text-align:right"><div class="tx-val">$5.8M</div><div class="tx-year">2024</div></td></tr>
+      <tr data-type="ast"><td style="padding-left:40px"><div class="tx-name">The Northern Courier — Archives</div><div class="tx-sub">Winnipeg, MB</div></td><td><span class="tx-type tx-ast">Asset Sale</span></td><td style="font-size:12px;color:var(--ink2)">Northlight Strategies</td><td style="font-size:12px;color:var(--ink2)">Print — Archival</td><td style="padding-right:40px;text-align:right"><div class="tx-val">$0.9M</div><div class="tx-year">2023</div></td></tr>
+    </tbody>
+  </table>
+  <div class="summary-bar">
+    <div class="summary-item"><div class="summary-label">Total closed value</div><div class="summary-val">$24.3M</div><div class="summary-sub">All transactions</div></div>
+    <div class="summary-item"><div class="summary-label">Transactions listed</div><div class="summary-val">5</div><div class="summary-sub">With consent</div></div>
+    <div class="summary-item"><div class="summary-label">Deal size range</div><div class="summary-val">$0.9M–$12.5M</div><div class="summary-sub">Middle market</div></div>
+    <div class="summary-item"><div class="summary-label">Industries covered</div><div class="summary-val">4</div><div class="summary-sub">Across sectors</div></div>
+    <div class="summary-item"><div class="summary-label">Participating firms</div><div class="summary-val">5</div><div class="summary-sub">Listed advisors</div></div>
+  </div>
+</div>
+
+<!-- PAGE: ADVISORS -->
+<div class="page" id="page-advisors">
+  <div id="advisors-grid-view">
+    <div class="page-hero">
+      <span class="eyebrow">Advisor Directory</span>
+      <h1 class="page-title">Firms &amp; advisors</h1>
+      <p class="page-sub">NMI-listed firms covering M&amp;A advisory, quality of earnings, and investment banking for middle market and lower middle market transactions across all industries. Click any firm to view their full profile and team.</p>
+    </div>
+    <div class="firm-grid">
+      <div class="firm-card" onclick="openFirm('khanna')"><span class="firm-card-arrow">→</span><span class="cat-badge cat-ma">M&amp;A Advisor</span><div class="firm-card-name">Khanna Advisory Group</div><div class="firm-card-mp">Managing Partner: Rajiv Khanna</div><span class="firm-card-web">khannaadvisory.ca</span><div class="firm-card-region">📍 Toronto, ON</div><div class="firm-card-tags"><span class="firm-tag">QofE</span><span class="firm-tag">Broadcasting</span><span class="firm-tag">M&amp;A</span></div></div>
+      <div class="firm-card" onclick="openFirm('dubois')"><span class="firm-card-arrow">→</span><span class="cat-badge cat-ma">M&amp;A Advisor</span><div class="firm-card-name">Dubois Media Law &amp; Advisory</div><div class="firm-card-mp">Managing Partner: Patricia Dubois</div><span class="firm-card-web">duboismedialegal.ca</span><div class="firm-card-region">📍 Ottawa, ON</div><div class="firm-card-tags"><span class="firm-tag">Regulatory</span><span class="firm-tag">QofE</span><span class="firm-tag">CRTC</span></div></div>
+      <div class="firm-card" onclick="openFirm('northlight')"><span class="firm-card-arrow">→</span><span class="cat-badge cat-ma">M&amp;A Advisor</span><div class="firm-card-name">Northlight Strategies</div><div class="firm-card-mp">Managing Partner: Ben Nakamura</div><span class="firm-card-web">northlightstrategies.ca</span><div class="firm-card-region">📍 Calgary, AB</div><div class="firm-card-tags"><span class="firm-tag">Valuation</span><span class="firm-tag">QofE</span><span class="firm-tag">Print</span></div></div>
+      <div class="firm-card" onclick="openFirm('meridian')"><span class="firm-card-arrow">→</span><span class="cat-badge cat-ma">M&amp;A Advisor</span><div class="firm-card-name">Meridian Capital Advisors</div><div class="firm-card-mp">Managing Partner: Amara Osei</div><span class="firm-card-web">meridiancap.ca</span><div class="firm-card-region">📍 Toronto, ON</div><div class="firm-card-tags"><span class="firm-tag">Private Capital</span><span class="firm-tag">QofE</span><span class="firm-tag">Impact</span></div></div>
+      <div class="firm-card" onclick="openFirm('laurentian')"><span class="firm-card-arrow">→</span><span class="cat-badge cat-ib">Investment Bank</span><div class="firm-card-name">Laurentian Media Capital</div><div class="firm-card-mp">Managing Director: Sophie Laurent</div><span class="firm-card-web">laurentianmediacap.ca</span><div class="firm-card-region">📍 Montreal, QC</div><div class="firm-card-tags"><span class="firm-tag">Mid-Market</span><span class="firm-tag">Digital</span></div></div>
+      <div class="firm-card" onclick="openFirm('pacific')"><span class="firm-card-arrow">→</span><span class="cat-badge cat-ib">Investment Bank</span><div class="firm-card-name">Pacific Crest Media Partners</div><div class="firm-card-mp">Managing Director: Marcus Chen</div><span class="firm-card-web">pcmediapartners.ca</span><div class="firm-card-region">📍 Vancouver, BC</div><div class="firm-card-tags"><span class="firm-tag">Mid-Market</span><span class="firm-tag">AdTech</span></div></div>
+    </div>
+  </div>
+  <div class="firm-detail" id="firm-detail">
+    <div class="firm-detail-back" onclick="closeFirm()">← Back to all firms</div>
+    <div class="firm-detail-body">
+      <div class="firm-detail-sidebar" id="firm-sidebar"></div>
+      <div class="firm-detail-main" id="firm-main"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: REPORTS -->
+<div class="page" id="page-reports">
+  <div class="page-hero">
+    <span class="eyebrow">Research &amp; Reports</span>
+    <h1 class="page-title">M&amp;A landscape</h1>
+    <p class="page-sub">Proprietary analysis on deal activity, valuation trends, and sector dynamics across North American middle market and lower middle market transactions.</p>
+  </div>
+  <div class="reports-layout">
+    <div class="reports-main">
+      <div class="report-cover">
+        <div class="report-cover-eyebrow">Flagship Report · Annual · 2025</div>
+        <div class="report-cover-title">North American M&amp;A Outlook: Mid-Market Convergence</div>
+        <p class="report-cover-sub">An in-depth analysis of deal activity, valuation multiples, and buyer-seller dynamics across industries. Includes regional deal maps and benchmarks for middle market and lower middle market transactions $5M–$150M.</p>
+        <div class="report-cadence"><strong>Publication cadence:</strong> Annual in Year 1 · Moving to quarterly in Year 2–3 as deal flow scales. Next edition: Q1 2026.</div>
+        <div class="report-meta">
+          <div class="report-meta-item"><div class="report-meta-label">Published</div><div class="report-meta-val">May 2025</div></div>
+          <div class="report-meta-item"><div class="report-meta-label">Pages</div><div class="report-meta-val">42</div></div>
+          <div class="report-meta-item"><div class="report-meta-label">Deals covered</div><div class="report-meta-val">38</div></div>
+          <div class="report-meta-item"><div class="report-meta-label">Industries</div><div class="report-meta-val">Multi-sector</div></div>
+        </div>
+        <div class="toc-title">Contents</div>
+        <div class="toc-row"><span class="toc-num">01</span><span class="toc-label">Executive summary &amp; key findings</span><span class="toc-pg">4</span></div>
+        <div class="toc-row"><span class="toc-num">02</span><span class="toc-label">Deal volume &amp; value trends, 2024–2025</span><span class="toc-pg">9</span></div>
+        <div class="toc-row"><span class="toc-num">03</span><span class="toc-label">Valuation multiples by sector</span><span class="toc-pg">16</span></div>
+        <div class="toc-row"><span class="toc-num">04</span><span class="toc-label">Buyer profiles &amp; capital sources</span><span class="toc-pg">24</span></div>
+        <div class="toc-row"><span class="toc-num">05</span><span class="toc-label">Regional deal map: Ontario to BC</span><span class="toc-pg">31</span></div>
+        <div class="toc-row"><span class="toc-num">06</span><span class="toc-label">Outlook &amp; NMI view for 2026</span><span class="toc-pg">38</span></div>
+        <button class="report-dl" onclick="openModal()">↓ &nbsp; Download report — Subscriber access</button>
+      </div>
+    </div>
+    <div class="reports-sidebar">
+      <div class="sidebar-title">Archive</div>
+      <div class="archive-item"><div class="archive-item-tag">Audio</div><div class="archive-item-title">Podcast M&amp;A: Valuation benchmarks 2025</div><div class="archive-item-date">May 2025 · 24 pages</div></div>
+      <div class="archive-item"><div class="archive-item-tag">AdTech</div><div class="archive-item-title">AdTech consolidation tracker — Q1</div><div class="archive-item-date">April 2025 · 18 pages</div></div>
+      <div class="archive-item"><div class="archive-item-tag">Print</div><div class="archive-item-title">Regional press: Survival &amp; exit strategies</div><div class="archive-item-date">March 2025 · 31 pages</div></div>
+      <div class="archive-item"><div class="archive-item-tag">Digital</div><div class="archive-item-title">Digital media revenue models review</div><div class="archive-item-date">Feb 2025 · 20 pages</div></div>
+      <div class="archive-item"><div class="archive-item-tag">Broadcast</div><div class="archive-item-title">Community television: A market overview</div><div class="archive-item-date">Jan 2025 · 28 pages</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: ABOUT -->
+<div class="page" id="page-about">
+  <div class="about-hero">
+    <div>
+      <span class="eyebrow">About Northmark M&amp;A</span>
+      <h1 class="about-headline">Intelligence at the intersection of <em>deals</em> and capital.</h1>
+      <p class="about-body">Northmark M&amp;A is a specialized advisory and research platform serving buyers, sellers, and investors across North American middle market and lower middle market transactions. We curate a directory of qualified advisors, maintain a record of closed transactions, and produce independent research — operating with the precision and discretion that complex deals demand.</p>
+      <p class="about-body">Northmark M&amp;A is anchored in principled, long-horizon thinking.</p>
+    </div>
+    <div class="about-stats">
+      <div class="about-stat"><div class="about-stat-num">120+</div><div class="about-stat-label">Transactions tracked annually</div></div>
+      <div class="about-stat"><div class="about-stat-num">$2B+</div><div class="about-stat-label">Deal value monitored on platform</div></div>
+      <div class="about-stat"><div class="about-stat-num">40+</div><div class="about-stat-label">Senior advisors on roster</div></div>
+      <div class="about-stat"><div class="about-stat-num">8</div><div class="about-stat-label">Proprietary reports per year</div></div>
+    </div>
+  </div>
+  <div class="about-section">
+    <div class="about-section-title">How we operate</div>
+    <div class="principles">
+      <div>
+        <div class="principle-icon">◎</div>
+        <div class="principle-title">Discretion first</div>
+        <p class="principle-body">All deal flow is handled with strict confidentiality. We work under NDA before disclosing any principal-identifying information to any party on the platform.</p>
+      </div>
+      <div>
+        <div class="principle-icon">⊖</div>
+        <div class="principle-title">Independent perspective</div>
+        <p class="principle-body">Northmark M&amp;A does not take retainers from buyers or sellers on listed deals. Our research is never commissioned by deal parties — we remain structurally independent.</p>
+      </div>
+      <div>
+        <div class="principle-icon">◷</div>
+        <div class="principle-title">Long-horizon thinking</div>
+        <p class="principle-body">We advise with a view to sustainable outcomes — for the business, its people, and its stakeholders.</p>
+      </div>
+    </div>
+  </div>
+  <div class="about-section">
+    <div class="about-section-title">Leadership</div>
+    <div class="leadership-grid">
+      <div class="leader-card"><div class="leader-av">PV</div><div><div class="leader-name">Priyanka Varma</div><div class="leader-role">Managing Director<br>Northmark M&amp;A</div></div></div>
+      <div class="leader-card"><div class="leader-av empty">—</div><div><div class="leader-name tba">To be announced</div><div class="leader-role">Head of Research</div></div></div>
+      <div class="leader-card"><div class="leader-av empty">—</div><div><div class="leader-name tba">To be announced</div><div class="leader-role">Head of Advisor Relations</div></div></div>
+    </div>
+    <div class="placeholder-block">
+      <div class="placeholder-label">Forthcoming — expand as the platform grows</div>
+      <div class="placeholder-slots">
+        <div class="placeholder-slot"><div class="placeholder-plus">+</div>Board of Directors</div>
+        <div class="placeholder-slot"><div class="placeholder-plus">+</div>Advisory Board</div>
+        <div class="placeholder-slot"><div class="placeholder-plus">+</div>Industry Fellows</div>
+        <div class="placeholder-slot"><div class="placeholder-plus">+</div>Institutional Partners</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">© 2025 Northmark Media Intelligence Inc. · Incorporated in Ontario</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#" onclick="showPage('about'); return false;">About</a>
+    <a href="#" onclick="openModal(); return false;">Contact</a>
+  </div>
+</footer>
+
+<!-- SUBSCRIBE MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-title">Subscribe to NMI</div>
+    <p class="modal-sub">Get access to the deal record, reports, and advisor directory updates.</p>
+    <div class="modal-field"><label>Full name</label><input type="text" placeholder="Your name"></div>
+    <div class="modal-field"><label>Email address</label><input type="email" placeholder="you@firm.com"></div>
+    <div class="modal-field"><label>Firm / Organisation</label><input type="text" placeholder="Your firm"></div>
+    <div class="modal-actions">
+      <button class="btn-gold btn-gold-fill" onclick="closeModal()" style="padding:10px 24px">Request access</button>
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Page navigation ──────────────────────────────────────────
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links li a').forEach(a => a.classList.remove('active'));
+  const page = document.getElementById('page-' + id);
+  if (page) page.classList.add('active');
+  const tab = document.getElementById('nav-' + id);
+  if (tab) tab.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // close mobile nav if open
+  document.getElementById('nav-links').classList.remove('open');
+}
+
+// ── Mobile nav ───────────────────────────────────────────────
+function toggleMobileNav() {
+  document.getElementById('nav-links').classList.toggle('open');
+}
+
+// ── List filters ─────────────────────────────────────────────
+var listCat = 'all';
+function filterList(cat, btn) {
+  listCat = cat;
+  document.querySelectorAll('.filter-bar .filter-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyListFilter();
+}
+function applyListFilter() {
+  var q = document.getElementById('list-search').value.toLowerCase();
+  document.querySelectorAll('#list-body tr').forEach(function(row) {
+    var catOk = listCat === 'all' || row.dataset.cat === listCat;
+    var txtOk = !q || row.textContent.toLowerCase().includes(q);
+    row.style.display = (catOk && txtOk) ? '' : 'none';
+  });
+}
+
+// ── Transaction filters ───────────────────────────────────────
+var txType = 'all';
+function filterTX(type, btn) {
+  txType = type;
+  document.querySelectorAll('#page-transactions .filter-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#tx-body tr').forEach(function(row) {
+    row.style.display = (txType === 'all' || row.dataset.type === txType) ? '' : 'none';
+  });
+}
+
+// ── Firm data ─────────────────────────────────────────────────
+var FIRMS = {
+  khanna: {
+    name: 'Khanna Advisory Group', type: 'M&A Advisor', typeClass: 'cat-ma',
+    mp: 'Rajiv Khanna', web: 'khannaadvisory.ca', region: 'Toronto, ON',
+    founded: '2011', size: '12 professionals', focus: '$10M–$80M · All industries',
+    about: 'Khanna Advisory Group is a boutique M&A advisory firm specializing in middle market transactions across North America. The firm has advised on over 60 transactions and is known for rigorous quality of earnings work and discretion in complex multi-party deals.',
+    deals: [{name:'Prairie Digital Holdings', val:'$12.5M', type:'Acquisition — 2024'}],
+    team: [{init:'RK',name:'Rajiv Khanna',title:'Managing Partner'},{init:'SK',name:'Sunita Khanna',title:'Director, QofE'},{init:'MF',name:'Michael Ford',title:'Associate'}]
+  },
+  dubois: {
+    name: 'Dubois Media Law & Advisory', type: 'M&A Advisor', typeClass: 'cat-ma',
+    mp: 'Patricia Dubois', web: 'duboismedialegal.ca', region: 'Ottawa, ON',
+    founded: '2008', size: '8 professionals', focus: 'Regulatory & QofE advisory',
+    about: 'Dubois Media Law & Advisory combines legal expertise with M&A advisory services, uniquely positioned to navigate regulatory requirements alongside financial due diligence across industries.',
+    deals: [{name:'Atlantic Press Group', val:'$2.1M', type:'Asset Sale — 2024'}],
+    team: [{init:'PD',name:'Patricia Dubois',title:'Managing Partner'},{init:'CR',name:'Claire Rousseau',title:'Regulatory Counsel'}]
+  },
+  northlight: {
+    name: 'Northlight Strategies', type: 'M&A Advisor', typeClass: 'cat-ma',
+    mp: 'Ben Nakamura', web: 'northlightstrategies.ca', region: 'Calgary, AB',
+    founded: '2015', size: '6 professionals', focus: 'Valuation & QofE, mid-market',
+    about: 'Northlight Strategies is a Western Canada boutique focused on valuation and quality of earnings for middle market assets across sectors.',
+    deals: [{name:'The Northern Courier — Archives', val:'$0.9M', type:'Asset Sale — 2023'}],
+    team: [{init:'BN',name:'Ben Nakamura',title:'Managing Partner'},{init:'LW',name:'Laura Whitmore',title:'Senior Analyst'}]
+  },
+  meridian: {
+    name: 'Meridian Capital Advisors', type: 'M&A Advisor', typeClass: 'cat-ma',
+    mp: 'Amara Osei', web: 'meridiancap.ca', region: 'Toronto, ON',
+    founded: '2017', size: '10 professionals', focus: 'Impact & private capital',
+    about: 'Meridian Capital Advisors focuses on transactions with mission-aligned or impact-oriented capital. The firm advises both sellers seeking values-aligned buyers and impact investors seeking assets with stakeholder significance.',
+    deals: [],
+    team: [{init:'AO',name:'Amara Osei',title:'Managing Partner'},{init:'DM',name:'Diana Mensah',title:'Director'},{init:'PL',name:'Pierre Lavoie',title:'Associate'}]
+  },
+  laurentian: {
+    name: 'Laurentian Media Capital', type: 'Investment Bank', typeClass: 'cat-ib',
+    mp: 'Sophie Laurent', web: 'laurentianmediacap.ca', region: 'Montreal, QC',
+    founded: '2013', size: '18 professionals', focus: 'Mid-market, $15M–$100M',
+    about: 'Laurentian Media Capital is a mid-market investment bank serving the North American market. The firm structures transactions for growth-stage businesses across digital, technology, and services sectors.',
+    deals: [{name:'Urban Lifestyle Media', val:'$3.0M', type:'Investment — 2024'}],
+    team: [{init:'SL',name:'Sophie Laurent',title:'Managing Director'},{init:'JB',name:'Jean Bouchard',title:'VP, Origination'},{init:'MT',name:'Marie Tremblay',title:'VP, Structuring'}]
+  },
+  pacific: {
+    name: 'Pacific Crest Media Partners', type: 'Investment Bank', typeClass: 'cat-ib',
+    mp: 'Marcus Chen', web: 'pcmediapartners.ca', region: 'Vancouver, BC',
+    founded: '2016', size: '14 professionals', focus: 'Tech-enabled mid-market',
+    about: 'Pacific Crest Media Partners is a technology-focused investment bank advising middle market businesses at the intersection of technology and traditional industries.',
+    deals: [{name:'Cascade Community Radio', val:'$5.8M', type:'Acquisition — 2024'}],
+    team: [{init:'MC',name:'Marcus Chen',title:'Managing Director'},{init:'AK',name:'Aisha Khan',title:'Director, Technology'}]
+  }
+};
+
+function openFirm(id) {
+  var f = FIRMS[id];
+  if (!f) return;
+
+  var s = '<div class="firm-avatar">' + f.mp.split(' ').map(w => w[0]).join('') + '</div>';
+  s += '<div class="firm-detail-name">' + f.name + '</div>';
+  s += '<span class="cat-badge ' + f.typeClass + '">' + f.type + '</span>';
+  s += '<div class="firm-meta-block">';
+  s += '<div class="firm-meta-row"><span class="firm-meta-label">Region</span><span class="firm-meta-val">' + f.region + '</span></div>';
+  s += '<div class="firm-meta-row"><span class="firm-meta-label">Founded</span><span class="firm-meta-val">' + f.founded + '</span></div>';
+  s += '<div class="firm-meta-row"><span class="firm-meta-label">Team</span><span class="firm-meta-val">' + f.size + '</span></div>';
+  s += '<div class="firm-meta-row"><span class="firm-meta-label">Focus</span><span class="firm-meta-val">' + f.focus + '</span></div>';
+  s += '<div class="firm-meta-row"><span class="firm-meta-label">Website</span><span class="firm-meta-val" style="color:var(--gold)">' + f.web + '</span></div>';
+  s += '</div>';
+  s += '<span class="firm-team-label">Team</span>';
+  f.team.forEach(function(m) {
+    s += '<div class="firm-team-row"><div class="firm-team-av">' + m.init + '</div><div><div class="firm-team-name">' + m.name + '</div><div class="firm-team-title">' + m.title + '</div></div></div>';
+  });
+  document.getElementById('firm-sidebar').innerHTML = s;
+
+  var m = '<div class="firm-about-title">About the firm</div><div class="firm-about-body">' + f.about + '</div>';
+  m += '<div class="firm-deals-label">Closed transactions on record</div>';
+  if (f.deals.length === 0) {
+    m += '<div class="no-deals">No transactions on record yet.</div>';
+  } else {
+    f.deals.forEach(function(d) {
+      m += '<div class="firm-deal-row"><div><div class="firm-deal-name">' + d.name + '</div><div class="firm-deal-sub">' + d.type + '</div></div><div class="firm-deal-val">' + d.val + '</div></div>';
+    });
+  }
+  document.getElementById('firm-main').innerHTML = m;
+
+  document.getElementById('advisors-grid-view').style.display = 'none';
+  document.getElementById('firm-detail').classList.add('open');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function closeFirm() {
+  document.getElementById('advisors-grid-view').style.display = 'block';
+  document.getElementById('firm-detail').classList.remove('open');
+}
+
+// ── Modal ────────────────────────────────────────────────────
+function openModal() { document.getElementById('modal-overlay').classList.add('open'); }
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
+function closeModalOutside(e) { if (e.target === document.getElementById('modal-overlay')) closeModal(); }
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
